@@ -157,8 +157,8 @@ const handleToggleFilterClick = function () {
 const handleUpdateItem = function () {
   $('.js-shopping-list').children('li').find('#js-update-item-name-form').on('submit', event => {
     event.preventDefault();
-    let updatedItemName = $('.js-update-item-entry').val();
-    $('.js-update-item-entry').val('');
+    let updatedItemName = $(event.currentTarget).children('input').val();
+    $(event.currentTarget).children('input').val('');
     console.log(updatedItemName);
     //render();
     //REPLACE ITEMS.NAME with updatedItemName in 162 not working but is console logging correct text

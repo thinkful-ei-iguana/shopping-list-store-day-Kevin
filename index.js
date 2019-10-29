@@ -8,7 +8,7 @@ const store = {
   hideCheckedItems: false
 };
 
-store.items
+store.items;
 
 const generateItemElement = function (item) {
   let itemTitle = `<span class='shopping-item shopping-item__checked'>${item.name}</span>`;
@@ -155,17 +155,17 @@ const handleToggleFilterClick = function () {
 //THIS IS WHERE MY FUNCTIONS GO
 
 const handleUpdateItem = function () {
-  $('.js-shopping-list').find('#js-update-item-name-form').on('submit', event => {
+  $('.js-shopping-list').children('li').find('#js-update-item-name-form').on('submit', event => {
     event.preventDefault();
     let updatedItemName = $('.js-update-item-entry').val();
     $('.js-update-item-entry').val('');
-    store.items.name = updatedItemName;
-    console.log(store.items.name);
-    render();
-    //REPLACE ITEMS.NAME with updatedItemName in 162 not working
+    console.log(updatedItemName);
+    //render();
+    //REPLACE ITEMS.NAME with updatedItemName in 162 not working but is console logging correct text
     //for some reason the second time update is clicked if render is called the page reloads
+    //if render is not running only the first button works
   });
-}
+};
 
 //THIS IS WHERE MY FUNCTIONS GO
 

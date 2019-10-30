@@ -23,8 +23,8 @@ const generateItemElement = function (item) {
       ${itemTitle}
       <form id="js-update-item-name-form">
           <label for="update-name">Change item name</label>
-          <input type="text" name="update-item-name" class="js-update-item-entry">
-          <button type="submit">Update</button>
+          <input type="text" name="update-item-name" class="js-updated-name">
+          <button type="submit" class="js-update-item-entry">Update</button>
         </form>
       <div class='shopping-item-controls'>
         <button class='shopping-item-toggle js-item-toggle'>
@@ -155,15 +155,16 @@ const handleToggleFilterClick = function () {
 //THIS IS WHERE MY FUNCTIONS GO
 
 const handleUpdateItem = function () {
-  $('.js-shopping-list').children('li').find('#js-update-item-name-form').on('submit', event => {
+  $('.js-shopping-list').on('click', 'button.js-update-item-entry', event => {
     event.preventDefault();
-    let updatedItemName = $(event.currentTarget).children('input').val();
-    $(event.currentTarget).children('input').val('');
+    let updatedItemName = $(event.currentTarget).siblings('input.js-updated-name').val();
+    $(event.currentTarget).siblings('input.js-updated-name').val('');
     console.log(updatedItemName);
-    //render();
-    //REPLACE ITEMS.NAME with updatedItemName in 162 not working but is console logging correct text
-    //for some reason the second time update is clicked if render is called the page reloads
-    //if render is not running only the first button works
+    let idOfUpdated = getItemIdFromElement(event.currentTarget);
+    console.log(idOfUpdated);
+    const index = store.items.findIndex(item => item.id === idOfUpdated);
+    store.items[index].name = updatedItemName;
+    render();
   });
 };
 
